@@ -2,6 +2,12 @@
 
 A new Flutter project.
 
+## Version
+
+- App version: `1.0.0+1` (from `pubspec.yaml`)
+- Flutter: `3.41.8` (stable)
+- Dart SDK: `3.11.5` (`^3.11.5`)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
