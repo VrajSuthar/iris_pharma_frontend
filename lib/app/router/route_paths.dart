@@ -7,12 +7,16 @@ abstract final class RoutePaths {
   static const register = '/register';
   static const forgotPassword = '/forgot-password';
 
+  static const main = '/main';
+
   static const home = '/home';
   static const categories = '/categories';
   static const cart = '/cart';
+  static const favorite = '/favorite';
   static const profile = '/profile';
 
   static const search = '/search';
+  static const notifications = '/notifications';
 
   static const productIdParam = 'productId';
   static const productDetail = '/products/:$productIdParam';

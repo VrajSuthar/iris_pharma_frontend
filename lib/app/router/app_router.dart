@@ -5,9 +5,12 @@ import '../../core/logging/router_logger.dart';
 import '../../features/cart/presentation/screens/cart_screen.dart';
 import '../../features/catalog/presentation/screens/categories_screen.dart';
 import '../../features/catalog/presentation/screens/product_detail_screen.dart';
+import '../../features/favorite/presentation/screens/favorite_screen.dart';
 import '../../features/forgot_password/presentation/screens/forgot_password_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/login/presentation/screens/login_screen.dart';
+import '../../features/main/presentation/screen/main_screen.dart';
+import '../../features/notification/presentation/screens/notification_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/register/presentation/screens/register_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
@@ -45,6 +48,10 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) => const ForgotPasswordScreen(),
       ),
       GoRoute(
+        path: RoutePaths.main,
+        builder: (context, state) => const MainScreen(),
+      ),
+      GoRoute(
         path: RoutePaths.home,
         builder: (context, state) => const HomeScreen(),
       ),
@@ -57,12 +64,20 @@ GoRouter appRouter(Ref ref) {
         builder: (context, state) => const CartScreen(),
       ),
       GoRoute(
+        path: RoutePaths.favorite,
+        builder: (context, state) => const FavoriteScreen(),
+      ),
+      GoRoute(
         path: RoutePaths.profile,
         builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
         path: RoutePaths.search,
         builder: (context, state) => const SearchScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.notifications,
+        builder: (context, state) => const NotificationScreen(),
       ),
       GoRoute(
         path: RoutePaths.productDetail,

@@ -1,9 +1,14 @@
+import 'package:amazing_icons/broken.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../app/router/route_paths.dart';
+import '../../../../app/theme/app_colors.dart';
 import '../../../../core/widgets/common_text.dart';
+import '../../../../core/widgets/common_text_form_field.dart';
 
 class LoginScreenMobile extends HookWidget {
   const LoginScreenMobile({super.key});
@@ -13,60 +18,77 @@ class LoginScreenMobile extends HookWidget {
     final phoneController = useTextEditingController();
     final passwordController = useTextEditingController();
     final obscurePassword = useState(true);
+    final theme = Theme.of(context);
 
     return SafeArea(
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const CommonText(
+            CommonText(
               'Welcome Back',
               fontSize: 28,
+              style: GoogleFonts.specialElite(),
               fontWeight: FontWeight.w700,
             ),
-            const SizedBox(height: 8),
-            const CommonText('Login to continue', fontSize: 14),
+            const CommonText(
+              'Your beauty essentials are waiting. Log in to continue shopping.',
+              fontSize: 14,
+            ),
             const SizedBox(height: 32),
-            TextField(
+            CommonText("Phone", fontSize: 16),
+            SizedBox(height: 8),
+            CommonTextFormField(
               controller: phoneController,
+              hintText: 'Phone number',
               keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(hintText: 'Phone number'),
+              textInputAction: TextInputAction.next,
+              prefixIcon: Icon(AmazingIconBroken.call),
             ),
             const SizedBox(height: 16),
-            TextField(
+            CommonText("Password", fontSize: 16),
+            SizedBox(height: 8),
+            CommonTextFormField(
               controller: passwordController,
+              hintText: 'Password',
               obscureText: obscurePassword.value,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    obscurePassword.value
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                  ),
-                  onPressed: () =>
-                      obscurePassword.value = !obscurePassword.value,
+              textInputAction: TextInputAction.done,
+              prefixIcon: const Icon(AmazingIconBroken.lock),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  obscurePassword.value
+                      ? AmazingIconBroken.eye
+                      : AmazingIconBroken.eyeSlash,
                 ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () => context.push(RoutePaths.forgotPassword),
-                child: const CommonText('Forgot password?', fontSize: 14),
+                onPressed: () => obscurePassword.value = !obscurePassword.value,
               ),
             ),
             const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => context.go(RoutePaths.home),
-                child: const CommonText(
-                  'Login',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+            Align(
+              alignment: AlignmentGeometry.centerRight,
+              child: CommonText("Forgot password ?", fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            GestureDetector(
+              onTap: () => context.go(RoutePaths.main),
+              child: Container(
+                width: 1.sw,
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16.h),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryBlue,
+                  borderRadius: BorderRadius.circular(64.r),
+                ),
+                child: Center(
+                  child: CommonText(
+                    "Log in",
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
